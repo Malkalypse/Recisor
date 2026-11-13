@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recisor Layout Orchestration Showcase</title>
+
+  <!-- Core library stylesheet -->
+  <link rel="stylesheet" href="src/recisor.css">
+
+  <!-- Demo presentation styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="demo-header">
+    <h1>📐 Recisor Layout Showcase</h1>
+    <p>
+      <strong>Recisor</strong> is a lightweight, zero-dependency layout orchestrator for managing resizable panels,
+      multi-pane sibling grids, and docked edge sidebars using standard CSS flexbox models.
+    </p>
+    <div class="meta-tags">
+      <span class="badge">Zero Dependencies</span>
+      <span class="badge">Sibling Grids</span>
+      <span class="badge">Parent/Child Sidebars</span>
+      <span class="badge">Event Driven</span>
+    </div>
+  </header>
+
+  <main class="showcase-container">
+
+    <!-- EXAMPLE 1: SIBLING PANELS WORKSPACE -->
+    <section class="demo-card">
+      <div class="card-header">
+        <h2>1. Sibling Panels</h2>
+        <code>Recisor.createSiblingWorkspace(container)</code>
+      </div>
+      <p class="description">
+        Drag bars are automatically injected between every consecutive sibling element. Supports automatic percentage
+        normalization and minimum boundary constraints via <code>data-recisor-min</code>.
+      </p>
+      <div id="workspace-sibling" class="layout-viewport">
+        <div class="demo-panel panel-blue" style="flex: 1;">Panel A </div>
+        <div class="demo-panel panel-purple" style="flex: 1;" data-recisor-min="180">Panel B (Min: 180px)</div>
+        <div class="demo-panel panel-emerald" style="flex: 1;">Panel C </div>
+      </div>
+    </section>
+
+    <!-- EXAMPLE 2: LEFT SIDEBAR -->
+    <section class="demo-card">
+      <div class="card-header">
+        <h2>2. Left Sidebar (Parent/Child)</h2>
+        <code>Recisor.createParentChildWorkspace(sidebar, { side: 'right' })</code>
+      </div>
+      <p class="description">
+        Injects an internal handle along the right edge of a panel. The neighboring content panel uses
+        <code>flex-grow: 1</code> to naturally fill the remaining space without layout jumps.
+      </p>
+      <div id="workspace-left-sidebar" class="layout-viewport">
+        <div id="sidebar-left-target" class="demo-panel panel-amber" style="width: 25%;">
+          Navigation Sidebar
+        </div>
+        <div class="demo-panel" style="flex-grow: 1;">
+          Main Workspace Canvas (Auto-Fills Available Space)
+        </div>
+      </div>
+    </section>
+
+    <!-- EXAMPLE 3: DUAL SIDEBARS WORKSPACE -->
+    <section class="demo-card">
+      <div class="card-header">
+        <h2>3. Dual Sidebars</h2>
+        <span><code>side: 'right'</code> &amp; <code>side: 'left'</code></span>
+      </div>
+      <p class="description">
+        Demonstrates independent left and right sidebars flanking a central workspace. Dynamic constraint calculation
+        ensures neither sidebar can crush the other or push the center panel beyond its minimum threshold.
+      </p>
+      <div id="workspace-dual" class="layout-viewport">
+        <div id="dual-left-sidebar" class="demo-panel panel-indigo" style="width: 20%;">
+          Toolbox
+        </div>
+        <div class="demo-panel" style="flex-grow: 0;">
+          Primary Editor Canvas
+        </div>
+        <div id="dual-right-sidebar" class="demo-panel panel-rose" style="width: 25%;">
+          Inspector
+        </div>
+      </div>
+    </section>
+
+    <!-- EXAMPLE 4: UN-OPINIONATED BEHAVIORAL BINDING
+    <section class="demo-card">
+      <div class="card-header">
+        <h2>4. Declarative Manual Binding</h2>
+        <code>Recisor.bind(customHandle, targetPanel)</code>
+      </div>
+      <p class="description">
+        Have your own custom markup, styling, or existing component architecture? <code>Recisor.bind()</code> wires up
+        the drag logic directly without modifying your DOM hierarchy or forcing layout wrapper classes.
+      </p>
+      <div class="layout-viewport custom-layout">
+        <div id="custom-target-panel" class="demo-panel panel-cyan" style="width: 220px;">
+          Custom Component
+        </div>
+        <div id="custom-dragbar-handle" class="custom-handle-strip" title="Drag to resize custom component"></div>
+        <div class="demo-panel panel-slate" style="flex: 1;">
+          Application Body
+        </div>
+      </div>
+    </section>
+    -->
+  </main>
+
+  <!-- LIVE EVENT BUS TELEMETRY MONITOR -->
+  <footer class="telemetry-bar">
+    <div class="telemetry-title">Event Telemetry:</div>
+    <div id="event-log" class="telemetry-output">Idle — Interact with any dragbar above to monitor event dispatches.</div>
+    <button class="telemetry-clear" onclick="clearTelemetry()">Clear</button>
+  </footer>
+
+  <!-- Include library script -->
+  <script src="src/Recisor.js"></script>
+
+  <!-- Demo initialization script -->
+  <script src="script.js"></script>
+</body>
+</html>

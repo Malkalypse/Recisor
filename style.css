@@ -1,0 +1,213 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 24px 24px 80px 24px;
+  background-color: #0b1120;
+  color: #e2e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+}
+
+/* Header */
+.demo-header {
+  max-width: 1100px;
+  margin: 0 auto 28px auto;
+}
+
+.demo-header h1 {
+  margin-bottom: 6px;
+  color: #f8fafc;
+  font-size: 1.85rem;
+  font-weight: 700;
+}
+
+.demo-header p {
+  max-width: 800px;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.meta-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.badge {
+  border: 1px solid #334155;
+  padding: 2px 10px;
+  background-color: #1e293b;
+  border-radius: 9999px;
+  color: #38bdf8;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Layout Showcase Container */
+.showcase-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Cards */
+.demo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #1f2937;
+  padding: 18px;
+  background-color: #111827;
+  border-radius: 10px;
+}
+
+.card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-header h2 {
+  color: #f3f4f6;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card-header code {
+  padding: 3px 8px;
+  background-color: #1f2937;
+  border-radius: 4px;
+  color: #a5b4fc;
+  font-family: "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+}
+
+.description {
+  color: #9ca3af;
+  font-size: 0.88rem;
+}
+
+.description code {
+  color: #e5e7eb;
+  font-family: monospace;
+}
+
+/* Viewports */
+.layout-viewport {
+  height: 120px;
+  border: 1px solid #374151;
+  background-color: #030712;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Demo Theme Colors */
+.demo-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  user-select: none;
+}
+
+.panel-blue    { background-color: #1e3a8a; color: #bfdbfe; }
+.panel-purple  { background-color: #4c1d95; color: #e9d5ff; }
+.panel-emerald { background-color: #064e3b; color: #a7f3d0; }
+.panel-amber   { background-color: #78350f; color: #fde68a; }
+.panel-slate   { background-color: #1e293b; color: #94a3b8; }
+.panel-indigo  { background-color: #312e81; color: #c7d2fe; }
+.panel-rose    { background-color: #881337; color: #fecdd3; }
+.panel-cyan    { background-color: #164e63; color: #a5f3fc; }
+
+/* Custom Manual Binding Example Layout */
+.custom-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.custom-handle-strip {
+  flex-shrink: 0;
+  width: 16px;
+  height: 100%;
+  background-color: #475569;
+  cursor: col-resize;
+  transition: background-color 0.15s ease;
+}
+
+.custom-handle-strip:hover {
+  background-color: #38bdf8;
+}
+
+/* Telemetry Footer Bar */
+.telemetry-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  border-top: 1px solid #1e293b;
+  padding: 0 24px;
+  background-color: #0f172a;
+  font-size: 0.85rem;
+}
+
+.telemetry-title {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.telemetry-output {
+  flex: 1;
+  color: #38bdf8;
+  font-family: monospace;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.telemetry-clear {
+  border: 1px solid #334155;
+  padding: 4px 10px;
+  background-color: #1e293b;
+  border-radius: 4px;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.telemetry-clear:hover {
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+/* Demo handle background color when idle */
+[data-recisor-handle] {
+  background-color: #f8fafc;
+}
+[data-recisor-handle]:hover,
+.recisor-dragging {
+  background-color: #38bdf8 !important;
+}
+
+/* Ensure panels allow JavaScript sizing without text-length barriers */
+.recisor-panel,
+.recisor-container > * {
+  min-width: 0 !important;
+}

@@ -1,0 +1,79 @@
+/** Recisor Core Engine Stylesheet
+ * Required structural and functional rules for all Recisor layouts
+ */
+
+/* Flex row container injected by Recisor factory methods */
+.recisor-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Using :where() drops the specificity to (0,0,0) so ANY other class overrides it */
+:where(.recisor-panel) {
+  position: relative;
+}
+
+/* Ensure panels in a row container don't compress beyond their calculated width */
+.recisor-panel {
+  flex-shrink: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Any panel with an internal left handle docked on the right side gets pushed to the right edge */
+.recisor-panel:has(.recisor-left-handle) {
+  margin-left: auto;
+}
+
+/* Ensure ALL panels inside containers have flex-shrink: 1 and min-width: 100px */
+.recisor-container > [style*="flex-grow"] {
+  flex-shrink: 1 !important;
+  min-width: 0;
+}
+
+/* Ensure ALL panels inside row containers have flex-shrink: 0 and min-width: 0 */
+.recisor-container > *:not([style*="flex-grow"]) {
+  flex-shrink: 0 !important;
+  min-width: 0 !important;
+}
+
+/* Base handle configuration (applied to all generated or declarative handles) */
+[data-recisor-handle] {
+  z-index: 10;
+  flex-shrink: 0;
+  cursor: ew-resize;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+
+/* Default sibling handle blueprint */
+.recisor-sibling-handle {
+  width: 6px;
+  height: 100%;
+}
+
+/* Base parameters for parent/child edge handles */
+.recisor-right-handle,
+.recisor-left-handle {
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 100%;
+}
+
+/* Explicit right margin anchor (for left sidebars) */
+.recisor-right-handle {
+  right: 0;
+}
+
+/* Explicit left margin anchor (for right sidebars) */
+.recisor-left-handle {
+  left: 0;
+}
+
+/* Active Dragging States & Cursor Locking */
+.recisor-container-dragging,
+.recisor-container-dragging * {
+  cursor: ew-resize !important;
+  user-select: none !important;
+}
